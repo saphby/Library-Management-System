@@ -63,11 +63,19 @@ class Book {
 
 bool continueBookAdd() {
     std::string userChoice;
-    std::string lowerChoice;
-    std::cout << "Add another Book (y/n)" << std::endl;
-    std::cin >> userChoice;
-    std::cin.ignore(1000, '\n'); 
-    return(userChoice == "Yes" || userChoice == "y");
+    do {
+        std::cout << "Add another Book (y/n)" << std::endl;
+        std::cin >> userChoice;
+        std::cin.ignore(1000, '\n'); 
+        
+        if (userChoice != "YES" && userChoice != "Yes" && userChoice != "yes" && userChoice != "Y" && userChoice != "y" &&
+            userChoice != "NO" && userChoice != "No" && userChoice != "no" && userChoice != "N" && userChoice != "n" ) {
+                std::cout << "Invalid input, Please try again" << std::endl;
+            }
+    } while(userChoice != "YES" && userChoice != "Yes" && userChoice != "yes" && userChoice != "Y" && userChoice != "y" &&
+            userChoice != "NO" && userChoice != "No" && userChoice != "no" && userChoice != "N" && userChoice != "n" );
+
+    return(userChoice == "YES" || userChoice == "Yes" || userChoice == "yes" || userChoice == "Y" || userChoice == "y");
 }
 
 void addBooks(std::vector<Book>&library) {    
