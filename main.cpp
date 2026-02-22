@@ -67,6 +67,7 @@ bool continueBookAdd() {
         std::cout << "Add another Book (y/n)" << std::endl;
         std::cin >> userChoice;
         std::cin.ignore(1000, '\n'); 
+        std::cout << std::endl;
         
         if (userChoice != "YES" && userChoice != "Yes" && userChoice != "yes" && userChoice != "Y" && userChoice != "y" &&
             userChoice != "NO" && userChoice != "No" && userChoice != "no" && userChoice != "N" && userChoice != "n" ) {
@@ -102,6 +103,7 @@ void addBooks(std::vector<Book>&library) {
 
     do
     {
+    std::cout << std::endl;
     std::cout << "Enter Book Title: " << std::endl;
     std::getline(std::cin, userTitle);
 
@@ -110,6 +112,7 @@ void addBooks(std::vector<Book>&library) {
 
     std::cout << "Enter Book ID: " << std::endl;
     userId = getValidInput();
+    std::cout << std::endl;
 
     bool idExists = false;
     for (Book book : library) {
@@ -231,14 +234,14 @@ void performReturn(std::vector<Book>&library, int id) {
 
         if (success) {
             if (now > dueDate) {
-                std::cout << "The book is " << days << " days overdue" << std::endl;
+                std::cout << "\nThe book is " << days << " days overdue" << std::endl;
                 std::cout << "Your fine is KES" << fine << ". " << std::endl;
             } 
             library[foundId].borrowerName = "None";
             library[foundId].borrowDate = 0;
-            std::cout << "You have successfully returned " << library[foundId].getTitle() << std::endl;
+            std::cout << "\nYou have successfully returned " << library[foundId].getTitle() << std::endl;
         } else  {
-            std::cout << "Sorry, " << library[foundId].getTitle() << " " << "is already returned." << std::endl;
+            std::cout << "\nSorry, " << library[foundId].getTitle() << " " << "is already returned." << std::endl;
         }
     } else {
         std::cout << "Not found" << std::endl;  
@@ -258,9 +261,9 @@ void saveLibrary(std::vector<Book>&library) {
             outFile << book.borrowDate << std::endl;
         }
     outFile.close();
-    std::cout << "Library saved successfully" << std::endl;
+    std::cout << "\nLibrary saved successfully" << std::endl;
     } else {
-        std::cout << "File could not be opened" << std::endl;
+        std::cout << "\nFile could not be opened" << std::endl;
     }
 }
 
@@ -316,7 +319,7 @@ void loadLibrary(std::vector<Book>&library) {
         overdueBook.borrowDate = time(0) - 1555200;
         library.push_back(overdueBook);
 
-        std::cout << "Five books IDs (200, 201, 202, 203, 204) have been loaded for testing" << std::endl; 
+        std::cout << "Five books IDs (200, 201, 202, 203, 204) have been loaded for testing\n" << std::endl; 
     } 
     
 }
@@ -334,7 +337,7 @@ int main () {
     
     bool running = true;
     while(running) {
-    std::cout << "Welcome to the Library of Airobinay " << std::endl;
+    std::cout << "-- Welcome to the Library of Airobinay --\n " << std::endl;
     std::cout << "1. Add Book(s) " << std::endl;
     std::cout << "2. Search by Author " << std::endl;
     std::cout << "3. Search by Title " << std::endl;
@@ -344,6 +347,7 @@ int main () {
     std::cout << "7. Exit " << std::endl;
     std::cout << "Select! " << std::endl;      
     choice = getValidInput();
+    std::cout << std::endl;
 
     switch (choice)
     {
@@ -354,36 +358,48 @@ int main () {
     case 2:
         std::cout << "Please enter the name of the Author " << std::endl;
         std::getline(std::cin, choiceAuthor);
+        std::cout << std::endl;
         findBookByAuthor(library, choiceAuthor);
+        std::cout << std::endl;
         break;
 
     case 3:
         std::cout << "Please enter the Title " << std::endl;
         std::getline(std::cin, choiceTitle);
+        std::cout << std::endl;
         findBookByTitle(library, choiceTitle);
+        std::cout << std::endl;
         break;
 
     case 4:
         std::cout << "Please enter the ID " << std::endl;
         choiceId = getValidInput();
+        std::cout << std::endl;
         findBookById(library, choiceId);
+        std::cout << std::endl;
         break;
 
     case 5:
         std::cout << "Please enter the ID " << std::endl;
-        borrowId = getValidInput(); 
+        borrowId = getValidInput();
+        std::cout << std::endl; 
         performBorrow(library, borrowId);
+        std::cout << std::endl;
         break;
 
     case 6:
         std::cout << "Please enter the ID " << std::endl;
         returnId = getValidInput();
+        std::cout << std::endl;
         performReturn(library, returnId);
+        std::cout << std::endl;
         break;
 
     case 7:
         saveLibrary(library);
+        std::cout << std::endl;
         std::cout << "Exitting.. " << std::endl;
+        std::cout << std::endl;
         return 0;
     
     default:
