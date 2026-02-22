@@ -39,3 +39,6 @@
 
 # debug information files
 *.dwo
+
+# Library Data
+library_data.txt
