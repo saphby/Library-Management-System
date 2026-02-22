@@ -82,7 +82,7 @@ int getValidInput() {
     int input;
     while (true) {
         std::cin >> input;
-        if (std::cin.fail()) {
+        if (std::cin.fail() || input < 0) {
             std::cin.clear();
             std::cin.ignore(1000, '\n');
             std::cout << "Invalid Input, please try again" << std::endl;        
@@ -316,7 +316,7 @@ void loadLibrary(std::vector<Book>&library) {
         overdueBook.borrowDate = time(0) - 1555200;
         library.push_back(overdueBook);
 
-        std::cout << "Five books IDs (201, 202, 203, 204, 205) have been loaded for testing" << std::endl;
+        std::cout << "Five books IDs (200, 201, 202, 203, 204) have been loaded for testing" << std::endl; 
     } 
     
 }
@@ -371,8 +371,7 @@ int main () {
 
     case 5:
         std::cout << "Please enter the ID " << std::endl;
-        borrowId = getValidInput();
-        std::cin.ignore(1000, '\n'); 
+        borrowId = getValidInput(); 
         performBorrow(library, borrowId);
         break;
 
