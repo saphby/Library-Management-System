@@ -78,6 +78,23 @@ bool continueBookAdd() {
     return(userChoice == "YES" || userChoice == "Yes" || userChoice == "yes" || userChoice == "Y" || userChoice == "y");
 }
 
+int getValidInput() {
+    int input;
+    while (true) {
+        std::cin >> input;
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Invalid Input, please try again" << std::endl;        
+         } else {
+            break;
+         }   
+    }
+
+    std::cin.ignore(1000, '\n');
+    return input;
+}
+
 void addBooks(std::vector<Book>&library) {    
     std::string userTitle;
     std::string userAuthor;
@@ -92,7 +109,7 @@ void addBooks(std::vector<Book>&library) {
     std::getline(std::cin, userAuthor);
 
     std::cout << "Enter Book ID: " << std::endl;
-    std::cin >> userId;
+    userId = getValidInput();
 
     bool idExists = false;
     for (Book book : library) {
@@ -279,9 +296,31 @@ void loadLibrary(std::vector<Book>&library) {
         }
 
      inFile.close();
-    }
+    } else { // I added a book showcase so that all features can be tested immediately 
+        std::cout << "No library save found, loading showcase data..." << std::endl;
+        library.push_back(Book("Siddharta", "Herman Hesse", 200 )); 
+        
+        
+        library.push_back(Book("Animal Farm", "George Orwell", 201));
+        library.push_back(Book("1984", "George Orwell", 202));
+
+        Book safeBook("The Nature of Code", "Daniel Shiffman", 203);
+        safeBook.borrow();
+        safeBook.borrowerName = "Tevin Ngelu";
+        safeBook.borrowDate = time(0) - 432000;
+        library.push_back(safeBook);
+
+        Book overdueBook("Engineering Electromagnetics", "William Hayt", 204);
+        overdueBook.borrow();
+        overdueBook.borrowerName = "John Mwangi"; 
+        overdueBook.borrowDate = time(0) - 1555200;
+        library.push_back(overdueBook);
+
+        std::cout << "Five books IDs (201, 202, 203, 204, 205) have been loaded for testing" << std::endl;
+    } 
     
 }
+
 
 int main () {
     std::vector<Book> library;
@@ -303,9 +342,8 @@ int main () {
     std::cout << "5. Borrow Book(s) " << std::endl;
     std::cout << "6. Return Book(s) " << std::endl;
     std::cout << "7. Exit " << std::endl;
-    std::cout << "Select! " << std::endl;   
-    std::cin >> choice;
-    std::cin.ignore(1000, '\n'); 
+    std::cout << "Select! " << std::endl;      
+    choice = getValidInput();
 
     switch (choice)
     {
@@ -327,20 +365,20 @@ int main () {
 
     case 4:
         std::cout << "Please enter the ID " << std::endl;
-        std::cin >> choiceId;
+        choiceId = getValidInput();
         findBookById(library, choiceId);
         break;
 
     case 5:
         std::cout << "Please enter the ID " << std::endl;
-        std::cin >> borrowId;
+        borrowId = getValidInput();
         std::cin.ignore(1000, '\n'); 
         performBorrow(library, borrowId);
         break;
 
     case 6:
         std::cout << "Please enter the ID " << std::endl;
-        std::cin >> returnId;
+        returnId = getValidInput();
         performReturn(library, returnId);
         break;
 
