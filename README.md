@@ -34,9 +34,13 @@ Where no existing library_data.txt file is found, the system will automatically 
 
 You can test the system's search, borrow, and fine calculation features using the following default Book IDs:
 
-200
-201
-202
-203 (Hint: Try returning this one)
-204 (Hint: Try returning this one to test the overdue fines)
+* 200
+
+* 201
+
+* 202
+
+* 203 (Hint: Try returning this one)
+
+* 204 (Hint: Try returning this one to test the overdue fines)
 
