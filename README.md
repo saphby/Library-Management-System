@@ -18,12 +18,14 @@ This program acts as an assistant to the librarian helping them make their day t
 ## Compilation and Execution
 
 On Windows:
-    g++ main.cpp -o library_app.exe
-    .\library_app.exe
+
+       g++ main.cpp -o library_app.exe
+       .\library_app.exe
 
 On Linux:
-    g++ main.cpp -o library_app
-    ./library_app
+
+      g++ main.cpp -o library_app
+      ./library_app
 
 ## Testing & Showcase Data
 
